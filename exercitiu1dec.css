@@ -1,0 +1,44 @@
+.maastricht {
+	background-color: #0B132B;
+	padding-left: 100px; 
+	padding-right: 100px; 
+	padding-top: 100px; 
+	padding-bottom: 250px; 
+	border-left: 180px solid white;
+	border-right: 15px solid white;
+}
+
+.yankees {
+	background-color: #1C2541;
+	padding: 100px; 
+	border-right: 15px solid white;
+
+}
+
+.independence {
+	background-color: #3A506B;
+	padding: 100px; 
+	border-right: 15px solid white;
+
+}
+
+.seaserpent {
+	background-color: #5BC0BE;
+	padding: 100px; 
+	border-right:15px solid white;
+
+}
+
+.aquamarine {
+	background-color: #6FFFE9;
+	padding: 100px; 
+	border-right: 180px solid white;
+
+}
+
+h1 {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	font-family: Trattatello;
+}
