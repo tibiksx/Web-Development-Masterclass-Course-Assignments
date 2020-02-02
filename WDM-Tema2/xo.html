@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>X & O cu Giovanni</title>
+  <link rel="stylesheet" type="text/css" href="./css/xo.css">
+  <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+</head>
+<body class="container bg">
+  <div class="row">
+    <h1 class="mx-auto">Giovanni Becali CRAZY CHALLENGE!!!</h1>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-4">
+      <div class="row">
+          <button id="reset-game" type="button" class="btn btn-danger mx-auto">Reset Game</button>
+      </div>
+      <hr>
+      <div class="row">
+          <button id="reset-leaderboard" type="button" class="btn btn-danger mx-auto">Reset Leaderboard</button>
+      </div>
+      <hr>
+      <div class="row">
+          <button id="undo" type="button" class="btn btn-danger mx-auto">Undo</button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="row">
+        <pre class="mx-auto">The rules are simple:</pre>
+        <ul class="mx-auto">
+          <li>
+            First click is X, second 0
+          </li>
+          <li>
+            HOT CHANCE: AFTER GETTING YOUR FRIENDS FRUSTRATED IN PvP,
+            TRY CHALLENGING THE ALMIGHTY GIOVANNI BECALI BY PINCHING HIM!
+          </li>
+          <li>
+            If you get a tie, you will have to reset the round,
+            as it is irelevant for your scoring
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-4">
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-4">
+      <div class="row">
+        <img id="giovanni" class="img-mafiot" src="giovanni.jpg" width="360"/>
+      </div>
+      <hr>
+      <div class="row">
+ 
+        <input id="nume1" type="text" name="name1" placeholder="Name Player 1" class="mx-auto">
+
+        <input id="nume2" type="text" name="name2" placeholder="Name Player 2" class="mx-auto">
+      </div>
+      <hr>
+      <div class="row">
+
+        <button id="play" type="button" class="btn btn-success mx-auto">Let's play!</button>
+      </div>
+      <br>
+      <div class="row">
+        <pre id="sarp" hidden> One of the names is invalid! Try again! </pre>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <pre class="mx-auto"> LEADERBOARD </pre>
+  </div>
+  <hr>
+  <div class="row">
+    <ul class="mx-auto">
+      <li>
+        <p id="y"> </p>
+      </li>
+      <li>
+        <p id="y2"> </p>
+      </li>
+      <li>
+        <p id="y3"> </p>
+      </li>
+    </ul>
+  </div>
+  <script type="text/javascript" src="./js/xo.js"></script>
+  <script type="text/javascript" src="./js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="./js/popper.min.js"></script>
+  <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+</body>
+</html>
