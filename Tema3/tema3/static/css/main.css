@@ -1,0 +1,27 @@
+body {
+    background-color: #F6F6F1;
+}
+
+.bg {
+    background-color: #BABB8E !important;
+}
+
+.jmb {
+    background-color: #969389 !important;
+}
+
+.bg-nav {
+    background-color: #A5B837;
+}
+
+.text-color-nav {
+    color: #364a3f;
+}
+
+.comment {
+    margin: 20px 0px 20px 20px;
+}
+
+.hidden {
+    display: none;
+}

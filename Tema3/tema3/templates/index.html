@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>My awesome blog!</title>
+</head>
+<body class="container">
+
+    <nav class="navbar fixed-top bg-nav">
+
+        <div class="col-4">
+            <center><pre class="my-auto text-color-nav">Coronavirus cheeeeck <3.</pre></center>
+        </div>
+
+        <div class="col-4">
+            <center>
+                <a class="navbar-brand" href="#">
+                    <img src="https://i.ya-webdesign.com/images/transparent-b-logo-3.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                </a>
+            </center>
+        </div>
+
+        <div class="col-4">
+            <form method="GET" action="/">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter by label
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for label in labels %}
+                <label class="dropdown-item">{{label.name}}
+                    <input type="submit" class="hidden" name="label" value="{{label.id}}" />
+                </label>
+              {% endfor %}
+          </div>
+        </div>
+    </form>
+        </div>
+    </nav>
+
+    <br><br><br><br><br>
+
+    {% if selected_labels %}
+        <form action="/">
+            {% for label in selected_labels %}
+            <span class="badge badge-info">{{ label.name }}<input type="submit" value="x" class="btn btn-danger" /></span>
+            {% endfor %}
+        </form>
+    {% endif %}
+    <br><br>
+
+    <center><h1>News Feed.</h1></center>
+    <br>
+
+    {% for post in posts %}
+    <div class="card mb-3 bg">
+      <img src="{{ post.picture }}" class="card-img-top" height="300" alt="">
+      <div class="card-body">
+        <center><h4 class="card-title">{{ post.title }} by {{ post.name }}</h4>
+          <h6 class="card-title">{{ post.subtitle }}
+              {% for label in post.label_set.all %}
+                    <span class="badge badge-info">{{ label.name }}</span>
+              {% endfor %}
+          </h6>
+        </center>
+          <p class="card-text">{{ post.text }}</p>
+          <p class="card-text">
+              <small class="text-muted">{{ post.date }}</small></p>
+      </div>
+
+    <hr>
+    {% for comm in post.comment_set.all %}
+
+    <div class="comment">
+        <div class="date">{{ comm.date }}</div>
+        <br>
+        <p><strong>{{ comm.name }}</strong>: {{ comm.text }}</p>
+    </div>
+    <hr>
+    {% empty %}
+        <center><p>This post has no comments.</p></center>
+    <hr>
+    {% endfor %}
+
+        <center><strong>Add a comment!</strong></center>
+
+    <center><form method="post" action="/add-comment">
+        {% csrf_token %}
+        <div class="form-group">
+            <p>What is your name?</p>
+            {{ form_comment.name }}
+        </div>
+        <div class="form-group">
+            <p>How did you feel about this post?</p>
+            {{ form_comment.text }}
+        </div>
+        <input name="post_id" value="{{ post.id }}" type="hidden">
+
+        <input class="btn btn-info" type="submit">
+    </form></center>
+
+    <br><br><br>
+
+    </div>
+
+    {% empty %}
+
+    <center><h4>It seems that there are no posts yet. Be the first one to post on our platform!</h4></center>
+
+    {% endfor %}
+
+    <br><br>
+
+    <hr class="my-4">
+
+    <br><br>
+
+    <div class="jumbotron jmb">
+
+        <center><h3> Add a post! </h3></center>
+
+        <form method="post" action="/add-post">
+            {% csrf_token %}
+            <div class="form-group">
+    <!--            <label for="nickname">Author</label>-->
+    <!--            <input name="nickname" type="text" class="form-control" id="nickname">-->
+                <p>Name: </p>
+                {{ form_post.name }}
+            </div>
+            <div class="form-group">
+    <!--            <label for="title">Title</label>-->
+    <!--            <input name="title" type="text" class="form-control" id="title">-->
+                <p>Title: </p>
+                {{ form_post.title }}
+            </div>
+            <div class="form-group">
+    <!--            <label for="subtitle">Subtitle</label>-->
+    <!--            <input name="subtitle" type="text" class="form-control" id="subtitle">-->
+                <p>Subtitle: </p>
+                {{ form_post.subtitle }}
+            </div>
+            <div class="form-group">
+    <!--            <label for="text">Content (Text)</label>-->
+    <!--            <input name="text" type="text" class="form-control" id="text">-->
+                <p>Content: </p>
+                {{ form_post.text }}
+            </div>
+            <div class="form-group">
+    <!--            <label for="text2">Content (Image as URL)</label>-->
+    <!--            <input name="text2" type="text" class="form-control" id="text2">-->
+                <p>Picture as URL: </p>
+                {{ form_post.picture }}
+            </div>
+            <div class="form-group">
+                <label for="label">Set label</label>
+                <select name="label" multiple id="label">
+                    {% for label in labels %}
+                    <option value="{{ label.id }}">{{ label.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input class="btn btn-info" type="submit">
+        </form>
+    </div>
+
+    <br><br><br><br>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
